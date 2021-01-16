@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import { AuthContext } from "./Auth";
 import { logInUser } from "./utils";
-import AuthenticationForm from "./AuthenticationForm";
+import { signupPath } from "./paths";
+import { Message } from "./utils";
 
 const LogIn = () => {
   const { currentUser } = useContext(AuthContext);
@@ -13,13 +14,11 @@ const LogIn = () => {
   }
 
   return (
-    <>
-      <h1>Log In</h1>
-      <AuthenticationForm submit={logInUser} />
-      <p>
-        Don't have an account? <Link to="/signup">Sign up</Link>
-      </p>
-    </>
+    <Message
+      componentName="Log In"
+      submitHandler={logInUser}
+      path={signupPath}
+    />
   );
 };
 

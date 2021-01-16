@@ -1,50 +1,35 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Redirect } from "react-router-dom";
 
-import app from "../firebase";
-import { AuthContext } from "./Auth";
-import { addTaskToUserDocument, retrieveTasksFromUserDocument } from "./utils";
 import TodoItem from "./TodoItem";
+import { AuthContext } from "./Auth";
+import { useTasks } from "./utils";
+import { loginPath } from "./paths";
 
 const Dashboard = () => {
-  const [tasks, setTasks] = useState([]);
-  const [task, setTask] = useState("");
   const { currentUser } = useContext(AuthContext);
-
-  useEffect(() => {
-    retrieveTasksFromUserDocument(currentUser).then((tasks) => {
-      setTasks(tasks);
-    });
-  }, []);
+  const { tasks, task, changeTaskValue, addTask } = useTasks(currentUser);
 
   if (!currentUser) {
-    return <Redirect to="/login" />;
+    return <Redirect to={loginPath} />;
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    await addTaskToUserDocument({ currentUser, task });
-    setTasks([task, ...tasks]);
-    setTask("");
-  };
+  const renderTasks = () =>
+    tasks.map((task, index) => <TodoItem data={task} key={index} />);
 
   return (
     <div>
       <h1>Welcome</h1>
-
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={addTask}>
         <label htmlFor="task"></label>
         <input
           name="task"
           placeholder="Write a task"
           value={task}
-          onChange={(e) => setTask(e.target.value)}
+          onChange={changeTaskValue}
         />
       </form>
-
-      {tasks.map((task, index) => (
-        <TodoItem data={task} key={index} />
-      ))}
+      {renderTasks()}
     </div>
   );
 };
