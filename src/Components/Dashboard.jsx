@@ -1,18 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { AuthContext } from "./Auth";
-import { addTaskToUserDocument } from "./utils";
+
 import app from "../firebase";
-import { retrieveTasksFromUserDocument } from "./utils";
+import { AuthContext } from "./Auth";
+import { addTaskToUserDocument, retrieveTasksFromUserDocument } from "./utils";
 import TodoItem from "./TodoItem";
 
 const Dashboard = () => {
-  const [state, setState] = useState([]);
+  const [tasks, setTasks] = useState([]);
+  const [task, setTask] = useState("");
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     retrieveTasksFromUserDocument(currentUser).then((tasks) => {
-      setState([...tasks]);
+      setTasks(tasks);
     });
   }, []);
 
@@ -20,26 +21,28 @@ const Dashboard = () => {
     return <Redirect to="/login" />;
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const inputValue = event.target.children.task.value;
-    addTaskToUserDocument({ currentUser, inputValue });
+    await addTaskToUserDocument({ currentUser, task });
+    setTasks([task, ...tasks]);
+    setTask("");
   };
-  console.log("state:", state);
-  // state.forEach((result) => result.forEach((task) => console.log(task)));
+
   return (
     <div>
       <h1>Welcome</h1>
-      <p>
-        This is the dashboard, if you can see this you're logged in. Wanna
-        logout?
-      </p>
-      <button onClick={() => app.auth().signOut()}>Sign out</button>
+
       <form onSubmit={handleSubmit}>
         <label htmlFor="task"></label>
-        <input name="task" placeholder="Write a task" />
+        <input
+          name="task"
+          placeholder="Write a task"
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+        />
       </form>
-      {state.map((task, index) => (
+
+      {tasks.map((task, index) => (
         <TodoItem data={task} key={index} />
       ))}
     </div>

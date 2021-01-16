@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Redirect, Link } from "react-router-dom";
+
 import { AuthContext } from "./Auth";
 import { logInUser } from "./utils";
 import AuthenticationForm from "./AuthenticationForm";
@@ -8,7 +9,7 @@ const LogIn = () => {
   const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/home" />;
   }
 
   return (

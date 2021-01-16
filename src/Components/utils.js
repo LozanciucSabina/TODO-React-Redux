@@ -1,11 +1,11 @@
-import app, { database } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
+
+import app, { database } from "../firebase";
 
 export const createUser = ({ email, password }) => {
   app
     .auth()
     .createUserWithEmailAndPassword(email.value, password.value)
-    .then(({ user }) => addUserToDatabase(user))
     .catch((error) => alert(error.message));
 };
 
@@ -16,27 +16,19 @@ export const logInUser = ({ email, password }) => {
     .catch((error) => alert(error.message));
 };
 
-function addUserToDatabase(user) {
-  database.collection("users").doc(user.uid).set({
-    email: user.email,
-  });
-}
-
-export function addTaskToUserDocument({ currentUser, inputValue }) {
-  database
+export function addTaskToUserDocument({ currentUser, task }) {
+  return database
     .collection("users")
     .doc(currentUser.uid)
     .collection("tasks")
     .doc(uuidv4())
     .set({
-      task: inputValue,
+      task,
     });
-  retrieveTasksFromUserDocument(currentUser);
 }
 
-async function retrieveTasksFromUserDocument(currentUser) {
-  let tasks = [];
-  let i = 0;
+export async function retrieveTasksFromUserDocument(currentUser) {
+  const tasks = [];
   await database
     .collection("users")
     .doc(currentUser.uid)
@@ -45,11 +37,13 @@ async function retrieveTasksFromUserDocument(currentUser) {
     .then((querySnap) =>
       querySnap.docs.forEach((doc) => {
         let { task } = doc.data();
-        tasks[i++] = task;
+        tasks.push(task);
       })
     );
 
   return tasks;
 }
 
-export { retrieveTasksFromUserDocument };
+export const signOutButton = (
+  <button onClick={() => app.auth().signOut()}>Sign out</button>
+);
