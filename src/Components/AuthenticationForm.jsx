@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({ submit }) {
+export default ({ submit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     submit(e.target.elements);
@@ -14,4 +14,4 @@ export default ({ submit }) {
       <button type="submit">Submit</button>
     </form>
   );
-}
+};
