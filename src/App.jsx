@@ -6,22 +6,18 @@ import Dashboard from "./Components/Dashboard";
 import LogIn from "./Components/LogIn";
 import SignUp from "./Components/SignUp";
 import { AuthProvider } from "./Components/Auth";
-import {
-  signupPath,
-  loginPath,
-  homePath,
-  dashboardPath,
-} from "./Components/paths";
+import { paths } from "./Components/paths";
 
 const App = () => {
+  const { home, dashboard, login, signup } = paths;
   return (
     <AuthProvider>
       <Router>
         <Switch>
-          <Route exact path={homePath} component={Home} />
-          <Route exact path={dashboardPath} component={Dashboard} />
-          <Route exact path={loginPath} component={LogIn} />
-          <Route exact path={signupPath} component={SignUp} />
+          <Route exact path={home} component={Home} />
+          <Route exact path={dashboard} component={Dashboard} />
+          <Route exact path={login} component={LogIn} />
+          <Route exact path={signup} component={SignUp} />
         </Switch>
       </Router>
     </AuthProvider>

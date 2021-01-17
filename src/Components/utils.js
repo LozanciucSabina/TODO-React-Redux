@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-import AuthenticationForm from "./AuthenticationForm";
 import app, { database } from "../firebase";
 
 export const createUser = ({ email, password }) => {
@@ -42,33 +40,7 @@ export async function retrieveTasksFromUserDocument(currentUser) {
   return tasks;
 }
 
-export const signOutButton = (
-  <button onClick={() => app.auth().signOut()}>Sign out</button>
-);
-
-export const Message = ({ componentName, submitHandler, path }) => {
-  const signUpMessage = "Do you have an account already?";
-  const logInMessage = "Don't have an account?";
-
-  const reusablePattern = (message, alternativeLink) => {
-    return (
-      <>
-        <h1>{componentName}</h1>
-        <AuthenticationForm submit={submitHandler} />
-        <p>
-          {message}
-          <Link to={path}>{alternativeLink}</Link>
-        </p>
-      </>
-    );
-  };
-
-  if (componentName === "Sign Up") {
-    return reusablePattern(signUpMessage, "Log In");
-  } else if (componentName === "Log In") {
-    return reusablePattern(logInMessage, "Sign Up");
-  }
-};
+export const signOut = () => app.auth().signOut();
 
 export function useTasks(currentUser) {
   const [tasks, setTasks] = useState([]);

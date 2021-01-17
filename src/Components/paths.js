@@ -1,4 +1,6 @@
-export const signupPath = "/signup";
-export const loginPath = "/login";
-export const dashboardPath = "/dashboard";
-export const homePath = ["/", "/home"];
+export const paths = {
+  login: "/login",
+  signup: "/signup",
+  dashboard: "/dashboard",
+  home: ["/", "/home"],
+};

@@ -4,14 +4,15 @@ import { Redirect } from "react-router-dom";
 import TodoItem from "./TodoItem";
 import { AuthContext } from "./Auth";
 import { useTasks } from "./utils";
-import { loginPath } from "./paths";
+import { paths } from "./paths";
 
 const Dashboard = () => {
   const { currentUser } = useContext(AuthContext);
   const { tasks, task, changeTaskValue, addTask } = useTasks(currentUser);
+  const { login } = paths;
 
   if (!currentUser) {
-    return <Redirect to={loginPath} />;
+    return <Redirect to={login} />;
   }
 
   const renderTasks = () =>
