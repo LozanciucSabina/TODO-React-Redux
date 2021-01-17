@@ -24,8 +24,8 @@ yarn-error.log*
 
 # files
 
-config.js
 .eslintcache
 
 debug.log
 README.md
+package-lock.json
