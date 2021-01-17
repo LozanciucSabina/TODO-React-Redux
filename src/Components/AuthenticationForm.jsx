@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function AuthenticationForm({ submit }) {
+export default ({ submit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     submit(e.target.elements);

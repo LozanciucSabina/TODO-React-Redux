@@ -1,7 +1,6 @@
-const signupStr = "Sign Up";
-const loginStr = "Log In";
-const homeStr = "home";
+const signUpLabel = "Sign Up";
+const logInLabel = "Log In";
 const signUpMessage = "Do you have an account already?";
 const logInMessage = "Don't have an account?";
 
-export { signupStr, signUpMessage, loginStr, logInMessage };
+export { signUpLabel, logInLabel, signUpMessage, logInMessage };

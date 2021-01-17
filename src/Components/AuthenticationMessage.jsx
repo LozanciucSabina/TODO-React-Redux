@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+
 import AuthenticationForm from "./AuthenticationForm";
 
-export const AuthMessage = ({
+export default ({
   componentName,
   submitHandler,
   path,

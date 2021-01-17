@@ -9,10 +9,10 @@ import { paths } from "./paths";
 const Dashboard = () => {
   const { currentUser } = useContext(AuthContext);
   const { tasks, task, changeTaskValue, addTask } = useTasks(currentUser);
-  const { login } = paths;
+  const { logIn } = paths;
 
   if (!currentUser) {
-    return <Redirect to={login} />;
+    return <Redirect to={logIn} />;
   }
 
   const renderTasks = () =>

@@ -9,15 +9,15 @@ import { AuthProvider } from "./Components/Auth";
 import { paths } from "./Components/paths";
 
 const App = () => {
-  const { home, dashboard, login, signup } = paths;
+  const { home, dashboard, logIn, signUp } = paths;
   return (
     <AuthProvider>
       <Router>
         <Switch>
           <Route exact path={home} component={Home} />
           <Route exact path={dashboard} component={Dashboard} />
-          <Route exact path={login} component={LogIn} />
-          <Route exact path={signup} component={SignUp} />
+          <Route exact path={logIn} component={LogIn} />
+          <Route exact path={signUp} component={SignUp} />
         </Switch>
       </Router>
     </AuthProvider>

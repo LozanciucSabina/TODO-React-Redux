@@ -1,27 +1,27 @@
 import React, { useContext } from "react";
 import { Redirect } from "react-router-dom";
 
+import AuthenticationMessage from "./AuthenticationMessage";
 import { AuthContext } from "./Auth";
-import { AuthMessage } from "./AuthenticationMessage";
 import { logInUser } from "./utils";
-import { loginStr, logInMessage, signupStr } from "./constants";
+import { logInLabel, logInMessage, signUpLabel } from "./constants";
 import { paths } from "./paths";
 
 const LogIn = () => {
   const { currentUser } = useContext(AuthContext);
-  const { signup, home } = paths;
+  const { signUp, home } = paths;
 
   if (currentUser) {
     return <Redirect to={home} />;
   }
 
   return (
-    <AuthMessage
-      componentName={loginStr}
+    <AuthenticationMessage
+      componentName={logInLabel}
       submitHandler={logInUser}
-      path={signup}
+      path={signUp}
       message={logInMessage}
-      redirectLinkName={signupStr}
+      redirectLinkName={signUpLabel}
     />
   );
 };

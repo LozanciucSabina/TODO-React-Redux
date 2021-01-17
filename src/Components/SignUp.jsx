@@ -1,26 +1,26 @@
 import React, { useContext } from "react";
 import { Redirect } from "react-router-dom";
 
+import AuthenticationMessage from "./AuthenticationMessage";
 import { AuthContext } from "./Auth";
-import { AuthMessage } from "./AuthenticationMessage";
 import { createUser } from "./utils";
-import { signupStr, signUpMessage, loginStr } from "./constants";
+import { signUpLabel, signUpMessage, logInLabel } from "./constants";
 import { paths } from "./paths";
 
 const SignUp = () => {
   const { currentUser } = useContext(AuthContext);
-  const { login, dashboard } = paths;
+  const { logIn, dashboard } = paths;
 
   if (currentUser) {
     return <Redirect to={dashboard} />;
   }
   return (
-    <AuthMessage
-      componentName={signupStr}
+    <AuthenticationMessage
+      componentName={signUpLabel}
       submitHandler={createUser}
-      path={login}
+      path={logIn}
       message={signUpMessage}
-      redirectLinkName={loginStr}
+      redirectLinkName={logInLabel}
     />
   );
 };

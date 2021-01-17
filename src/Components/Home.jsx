@@ -7,7 +7,9 @@ import { paths } from "./paths";
 
 const Home = () => {
   const { currentUser } = useContext(AuthContext);
-  const { dashboard, signup } = paths;
+
+  const { dashboard, signUp } = paths;
+
   let messageNode;
   if (currentUser) {
     messageNode = (
@@ -21,7 +23,7 @@ const Home = () => {
       </p>
     );
   } else {
-    return <Redirect to={signup} />;
+    return <Redirect to={signUp} />;
   }
 
   return (
