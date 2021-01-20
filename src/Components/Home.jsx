@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 
 import { AuthContext } from "./Auth";
-import { signOut } from "./utils";
+import { signOut } from "./userUtils";
 import { paths } from "./paths";
 
 const Home = () => {

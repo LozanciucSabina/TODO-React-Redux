@@ -3,12 +3,14 @@ import { Redirect } from "react-router-dom";
 
 import TodoItem from "./TodoItem";
 import { AuthContext } from "./Auth";
-import { useTasks } from "./utils";
+import { useTasks } from "./useTasks";
 import { paths } from "./paths";
 
 const Dashboard = () => {
   const { currentUser } = useContext(AuthContext);
-  const { tasks, task, changeTaskValue, addTask } = useTasks(currentUser);
+  const { tasks, task, changeTaskValue, addTask, deleteTask } = useTasks(
+    currentUser
+  );
   const { logIn } = paths;
 
   if (!currentUser) {
@@ -16,7 +18,14 @@ const Dashboard = () => {
   }
 
   const renderTasks = () =>
-    tasks.map((task, index) => <TodoItem data={task} key={index} />);
+    tasks.map((taskObject) => (
+      <TodoItem
+        key={taskObject.id}
+        data={taskObject.value}
+        taskID={taskObject.id}
+        deleteTask={deleteTask}
+      />
+    ));
 
   return (
     <div>
@@ -24,7 +33,7 @@ const Dashboard = () => {
       <form onSubmit={addTask}>
         <label htmlFor="task"></label>
         <input
-          name="task"
+          name="value"
           placeholder="Write a task"
           value={task}
           onChange={changeTaskValue}

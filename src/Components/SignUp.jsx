@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 
 import AuthenticationMessage from "./AuthenticationMessage";
 import { AuthContext } from "./Auth";
-import { createUser } from "./utils";
+import { createUser } from "./userUtils";
 import { signUpLabel, signUpMessage, logInLabel } from "./constants";
 import { paths } from "./paths";
 
