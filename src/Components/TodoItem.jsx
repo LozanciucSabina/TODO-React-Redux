@@ -1,11 +1,13 @@
 import React from "react";
 
-const TodoItem = ({ data, taskID, deleteTask }) => {
+const TodoItem = ({ value, id, isChecked, deleteTask, checkTask }) => {
   return (
     <>
-      <div>{data}</div>
-      <button onClick={(event) => deleteTask({ taskID, event })}>Delete</button>
-      <button>Done</button>
+      <div>{value}</div>
+      <button onClick={(event) => deleteTask({ id, event })}>Delete</button>
+      <button onClick={(event) => checkTask({ id, event, isChecked })}>
+        Done
+      </button>
     </>
   );
 };
