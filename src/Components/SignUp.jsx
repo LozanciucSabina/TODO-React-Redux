@@ -9,10 +9,10 @@ import { paths } from "./paths";
 
 const SignUp = () => {
   const { currentUser } = useContext(AuthContext);
-  const { logIn, dashboard } = paths;
+  const { logIn, home } = paths;
 
   if (currentUser) {
-    return <Redirect to={dashboard} />;
+    return <Redirect to={home} />;
   }
   return (
     <AuthenticationMessage

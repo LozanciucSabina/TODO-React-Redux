@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 
 import AuthenticationForm from "./AuthenticationForm";
 
-export default ({
+export default function authenticationMessage({
   componentName,
   submitHandler,
   path,
   message,
   redirectLinkName,
-}) => {
+}) {
   return (
     <>
       <h1>{componentName}</h1>
@@ -19,4 +19,4 @@ export default ({
       </p>
     </>
   );
-};
+}
