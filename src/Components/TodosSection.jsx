@@ -19,8 +19,8 @@ import { getTodosByVisibility } from "./redux/reducers/visibilityFilter";
 const TodosSection = () => {
   const { currentUser } = useContext(AuthContext);
 
-  const todos = useSelector((state) => state.todos);
-  const currentFilter = useSelector((state) => state.visibilityFilter);
+  const todos = useSelector(({ todos }) => todos);
+  const currentFilter = useSelector(({ visibilityFilter }) => visibilityFilter);
   const dispatch = useDispatch();
   const [todo, setTodo] = useState("");
 
@@ -33,18 +33,18 @@ const TodosSection = () => {
   }
   const addTodo = (e) => {
     e.preventDefault();
-    addTodoOnServer({ currentUser, dispatch, todo });
+    dispatch(addTodoOnServer({ currentUser, todo }));
     setTodo("");
   };
 
   const deleteTodo = ({ e, id }) => {
     e.preventDefault();
-    deleteTodoFromServer({ currentUser, dispatch, id });
+    dispatch(deleteTodoFromServer({ currentUser, id }));
   };
 
   const checkTodo = ({ e, id, isChecked }) => {
     e.preventDefault();
-    checkTodoOnServer({ currentUser, dispatch, id, isChecked });
+    dispatch(checkTodoOnServer({ currentUser, id, isChecked }));
   };
 
   const renderTasks = () => {

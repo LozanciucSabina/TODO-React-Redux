@@ -19,9 +19,9 @@ export const getTodosByVisibility = (todos, filter) => {
     case SHOW_ALL:
       return todos;
     case SHOW_CHECKED:
-      return todos.filter((todo) => todo.isChecked);
+      return todos.filter(({ isChecked }) => isChecked);
     case SHOW_ACTIVE:
-      return todos.filter((todo) => !todo.isChecked);
+      return todos.filter(({ isChecked }) => !isChecked);
     default:
       return todos;
   }

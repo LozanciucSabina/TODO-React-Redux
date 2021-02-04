@@ -1,4 +1,7 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunkMiddleware from "redux-thunk";
 
 import todos from "./reducers/todos";
 import visibilityFilter from "./reducers/visibilityFilter";
@@ -8,11 +11,10 @@ const allReducers = combineReducers({
   visibilityFilter,
 });
 
-const store = createStore(
-  allReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+const composedMiddleware = composeWithDevTools(
+  applyMiddleware(thunkMiddleware)
 );
 
-store.subscribe(() => console.log("Subscription data:", store.getState()));
+const store = createStore(allReducers, composedMiddleware);
 
 export default store;

@@ -6,44 +6,21 @@ import { addTask, removeTask, toggleTask } from "../redux/actionCreators";
 const userTasks = ({ uid }) =>
   database.collection("users").doc(uid).collection("tasks");
 
-export function addTaskOnServer({ currentUser, task }) {
+export function addTaskOnFirebase({ currentUser, task }) {
   return userTasks(currentUser).doc(task.id).set(task);
 }
 
-export async function addTodoOnServer({ todo: value, dispatch, currentUser }) {
-  const id = uuidv4();
-
-  const task = { value, isChecked: false, id };
-  await addTaskOnServer({ currentUser, task });
-  dispatch(addTask(task));
-}
-
-export async function deleteTodoFromServer({ id, dispatch, currentUser }) {
-  await deleteTaskFromServer({ currentUser, id });
-  dispatch(removeTask(id));
-}
-
-export async function checkTodoOnServer({
-  id,
-  dispatch,
-  currentUser,
-  isChecked,
-}) {
-  await checkTaskOnServer({ currentUser, id, isChecked });
-  dispatch(toggleTask(id));
-}
-
-export function deleteTaskFromServer({ currentUser, id }) {
+export function deleteTaskFirebase({ currentUser, id }) {
   return userTasks(currentUser).doc(id).delete();
 }
 
-export function checkTaskOnServer({ currentUser, id, isChecked }) {
+export function checkTaskFirebase({ currentUser, id, isChecked }) {
   return userTasks(currentUser).doc(id).update({
     isChecked: !isChecked,
   });
 }
 
-export function getTasksFromServer(currentUser) {
+export function getTasksFirebase(currentUser) {
   return userTasks(currentUser)
     .get()
     .then(({ docs }) =>
@@ -54,4 +31,28 @@ export function getTasksFromServer(currentUser) {
         return { id, value, isChecked };
       })
     );
+}
+
+export function addTodoOnServer({ todo: value, currentUser }) {
+  return async function (dispatch) {
+    const id = uuidv4();
+
+    const task = { value, isChecked: false, id };
+    await addTaskOnFirebase({ currentUser, task });
+    dispatch(addTask(task));
+  };
+}
+
+export function deleteTodoFromServer({ id, currentUser }) {
+  return async function (dispatch) {
+    await deleteTaskFirebase({ currentUser, id });
+    dispatch(removeTask(id));
+  };
+}
+
+export function checkTodoOnServer({ id, currentUser, isChecked }) {
+  return async function (dispatch) {
+    await checkTaskFirebase({ currentUser, id, isChecked });
+    dispatch(toggleTask(id));
+  };
 }
