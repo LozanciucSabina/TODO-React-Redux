@@ -1,13 +1,12 @@
 import { useEffect } from "react";
-import { getTasksFirebase } from "../tasks/utils";
+import { useDispatch } from "react-redux";
 import { setTasks } from "../redux/actionCreators";
 
-export default function useServerTodos({ currentUser, dispatch }) {
+export default function useServerTodos({ currentUser }) {
+  const dispatch = useDispatch();
   useEffect(() => {
     if (currentUser) {
-      getTasksFirebase(currentUser).then((todos) => {
-        dispatch(setTasks(todos));
-      });
+      dispatch(setTasks(currentUser));
     }
   }, [currentUser, dispatch]);
 }

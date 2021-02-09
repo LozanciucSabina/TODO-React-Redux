@@ -11,26 +11,19 @@ const Home = () => {
 
   const { logIn } = paths;
 
-  let messageNode;
-  if (currentUser) {
-    messageNode = (
-      <>
-        <p>
-          You are logged, do you want to Sign Out ?
-          <button onClick={signOut}>Sign out</button>
-          <br />
-        </p>
-        <TodosSection />
-      </>
-    );
-  } else {
+  if (!currentUser) {
     return <Redirect to={logIn} />;
   }
 
   return (
     <>
       <h1>Home</h1>
-      {messageNode}
+      <p>
+        You are logged, do you want to Sign Out ?
+        <button onClick={signOut}>Sign out</button>
+        <br />
+      </p>
+      <TodosSection />
     </>
   );
 };

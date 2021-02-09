@@ -7,14 +7,12 @@ import { AuthContext } from "./Auth";
 import { paths } from "./paths";
 
 import useServerTodos from "./hooks/useServerTodos";
-import {
-  addTodoOnServer,
-  checkTodoOnServer,
-  deleteTodoFromServer,
-} from "./tasks/utils";
+
 import { SHOW_ALL, SHOW_CHECKED, SHOW_ACTIVE } from "./redux/actionTypes";
 import Filter from "./Filter";
 import { getTodosByVisibility } from "./redux/reducers/visibilityFilter";
+
+import { addTask, deleteTask, toggleTask } from "./redux/actionCreators";
 
 const TodosSection = () => {
   const { currentUser } = useContext(AuthContext);
@@ -25,7 +23,6 @@ const TodosSection = () => {
   const [todo, setTodo] = useState("");
 
   const { logIn } = paths;
-
   useServerTodos({ currentUser, dispatch });
 
   if (!currentUser) {
@@ -33,18 +30,18 @@ const TodosSection = () => {
   }
   const addTodo = (e) => {
     e.preventDefault();
-    dispatch(addTodoOnServer({ currentUser, todo }));
+    dispatch(addTask({ currentUser, value: todo }));
     setTodo("");
   };
 
   const deleteTodo = ({ e, id }) => {
     e.preventDefault();
-    dispatch(deleteTodoFromServer({ currentUser, id }));
+    dispatch(deleteTask({ currentUser, id }));
   };
 
   const checkTodo = ({ e, id, isChecked }) => {
     e.preventDefault();
-    dispatch(checkTodoOnServer({ currentUser, id, isChecked }));
+    dispatch(toggleTask({ currentUser, id, isChecked }));
   };
 
   const renderTasks = () => {

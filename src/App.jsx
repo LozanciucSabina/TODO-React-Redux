@@ -6,7 +6,6 @@ import LogIn from "./Components/LogIn";
 import SignUp from "./Components/SignUp";
 import { AuthProvider } from "./Components/Auth";
 import { paths } from "./Components/paths";
-import "./styles/style.css";
 
 const App = () => {
   const { home, logIn, signUp } = paths;
