@@ -3,16 +3,16 @@ import { Redirect } from "react-router-dom";
 
 import AuthenticationMessage from "./AuthenticationMessage";
 import { AuthContext } from "./Auth";
-import { createUser } from "./utils";
+import { createUser } from "./user/utils";
 import { signUpLabel, signUpMessage, logInLabel } from "./constants";
 import { paths } from "./paths";
 
 const SignUp = () => {
   const { currentUser } = useContext(AuthContext);
-  const { logIn, dashboard } = paths;
+  const { logIn, home } = paths;
 
   if (currentUser) {
-    return <Redirect to={dashboard} />;
+    return <Redirect to={home} />;
   }
   return (
     <AuthenticationMessage
