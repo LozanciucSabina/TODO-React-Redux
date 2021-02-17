@@ -10,13 +10,13 @@ export default function authenticationMessage({
   redirectLinkName,
 }) {
   return (
-    <>
+    <div className="auth">
       <h1>{componentName}</h1>
       <AuthenticationForm submit={submitHandler} />
       <p>
         {message}
         <Link to={path}>{redirectLinkName}</Link>
       </p>
-    </>
+    </div>
   );
 }

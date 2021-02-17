@@ -1,1 +1,97 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+.bg-name-container {
+  position: relative;
+}
+
+.bg-name-container .app-name {
+  position: absolute;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  left: 50%;
+  top: 30%;
+  font-family: "Josefin Sans", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 40px;
+  letter-spacing: 5.28px;
+  color: #fff;
+}
+
+.bg-name-container .bg-desktop-light {
+  background-image: url("../images/bg-desktop-light.jpg");
+  background-position: center center;
+  background-size: cover;
+  width: 100vw;
+  height: calc(140px + 9vw);
+}
+
+.auth {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 500px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 0.375rem;
+  -webkit-box-shadow: 0 0.875rem 2.1875rem rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0.875rem 2.1875rem rgba(0, 0, 0, 0.25);
+  font-family: "Josefin Sans", sans-serif;
+  margin: auto;
+  position: relative;
+  -webkit-transform: translateY(-40%);
+          transform: translateY(-40%);
+}
+
+.auth form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.auth form input::-webkit-input-placeholder {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.auth form input:-ms-input-placeholder {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.auth form input::-ms-input-placeholder {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.auth form input::placeholder {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fafafa;
+  height: 100vh;
+}
+
+.navigation-block {
+  width: 100vw;
+  height: calc(20px + 2vw);
+  background-color: #fff;
+}
+/*# sourceMappingURL=style.css.map */
