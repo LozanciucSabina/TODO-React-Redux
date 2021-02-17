@@ -1,0 +1,19 @@
+//colors variables
+
+$veryLightGray: hsl(0, 0%, 98%);
+$veryLightGrayishBlue: hsl(236, 33%, 92%);
+$lightGrayishBlue: hsl(233, 11%, 84%);
+$darkGrayishBlue: hsl(236, 9%, 61%);
+$veryDarkGrayishBlue: hsl(235, 19%, 35%);
+
+$image-urls: (
+  "desktop": url("../images/bg-desktop-light.jpg"),
+  "mobile": url("../images/bg-mobile-light.jpg"),
+);
+
+@mixin bg-image($device) {
+  $url: map-get($image-urls, $device);
+  background-image: #{$url};
+  background-position: center center;
+  background-size: cover;
+}

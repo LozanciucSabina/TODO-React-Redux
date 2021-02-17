@@ -11,6 +11,11 @@ const App = () => {
   const { home, logIn, signUp } = paths;
   return (
     <AuthProvider>
+      <div className="navigation-block"></div>
+      <div className="bg-name-container">
+        <div className="bg-desktop-light"></div>
+        <div className="app-name">TODO APP</div>
+      </div>
       <Router>
         <Switch>
           <Route exact path={home} component={Home} />
