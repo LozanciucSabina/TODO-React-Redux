@@ -1,46 +1,78 @@
-.bg-name-container {
-  position: relative;
-  .app-name {
-    position: absolute;
-
-    transform: translateX(-50%);
-    left: 50%;
-    top: 30%;
-    font-family: "Josefin Sans", sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 40px;
-    letter-spacing: 5.28px;
-    color: #fff;
-  }
-  .bg-desktop-light {
-    @include bg-image(desktop);
-    width: 100vw;
-    height: calc(140px + 9vw); //further improvments
-  }
-}
-
-.auth {
-  display: flex;
+.authentication {
+  width: calc(249.3px + 20.1878vw);
+  height: 20rem;
+  @include flex-center;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 720px;
-  height: 200px;
-  background-color: #fff;
-  border-radius: 0.375rem;
-  box-shadow: 0 0.875rem 2.1875rem rgba(0, 0, 0, 0.25);
-  font-family: "Josefin Sans", sans-serif;
-  margin: auto;
   position: relative;
-  transform: translateY(-40%);
+  border-radius: 0.375rem;
+  margin: auto;
+  @include font(normal, unset);
+  background-color: #fff;
+  box-shadow: 0 0.875rem 2.1875rem rgba(0, 0, 0, 0.25);
+  transform: translateY(calc(-50px - 5vw));
 
-  form {
+  &__type {
+    margin-top: -70px;
+    margin-bottom: 20px;
+    color: $veryDarkGrayishBlue;
+    font-size: 29px;
+  }
+
+  &__form {
     display: flex;
     flex-direction: column;
-    & input::placeholder {
-      font-family: "Josefin Sans", sans-serif;
+
+    &__input {
+      width: 220px;
+      border: {
+        style: none;
+        bottom: $lightGrayishBlue;
+        bottom-style: solid;
+      }
+      margin-top: 15px;
+      outline: none;
+      @include font(normal, 18px);
+      color: $veryDarkGrayishBlue;
+      text-indent: 4px;
+
+      &::placeholder {
+        @include font(normal, 18px);
+        text-indent: 4px;
+      }
     }
+
+    &__submit-btn {
+      width: calc((249.3px + 20.1878vw) / 2);
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      padding: 30px 0 30px 0;
+      border: none;
+      margin-top: 0;
+      background: rgba(255, 255, 255, 0);
+      @include font(normal, 18px);
+      color: $veryDarkGrayishBlue;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+
+  &__line {
+    width: calc(249.3px + 20.1878vw);
+    height: 1px;
+    position: absolute;
+    bottom: 80px;
+    background-color: $lightGrayishBlue;
+  }
+
+  &__redirect-link {
+    width: calc((249.3px + 20.1878vw) / 2);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 30px 0 30px 0;
+    font-size: 18px;
+    color: $darkGrayishBlue;
+    text-align: center;
   }
 }

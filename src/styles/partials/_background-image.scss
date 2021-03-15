@@ -1,0 +1,30 @@
+.todo-app {
+  position: relative;
+
+  &__bg-image {
+    width: 100vw;
+    height: calc(164px + 9.39vw);
+    @include image("light", "desktop");
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    width: calc(249.3px + 20.1878vw);
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translateX(-50%);
+    @include font(bold, calc(22.4213px + 1.221vw));
+    color: #fff;
+    letter-spacing: 5.28px;
+    line-height: 40px;
+  }
+
+  &__theme {
+    background: $colorless;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+}
