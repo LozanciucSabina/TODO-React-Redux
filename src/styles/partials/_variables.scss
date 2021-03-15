@@ -1,19 +1,97 @@
 //colors variables
 
-$veryLightGray: hsl(0, 0%, 98%);
-$veryLightGrayishBlue: hsl(236, 33%, 92%);
-$lightGrayishBlue: hsl(233, 11%, 84%);
-$darkGrayishBlue: hsl(236, 9%, 61%);
-$veryDarkGrayishBlue: hsl(235, 19%, 35%);
+$veryLightGray: #fafafa;
+$veryLightGrayishBlue: #e4e5f1;
+$lightGrayishBlue: #d2d3db;
+$darkGrayishBlue: #9394a5;
+$veryDarkGrayishBlue: #484b6a;
+$colorless: #00000000;
+
+$breakpoint-up: (
+  // 450 721 1041 1441
+  "small": "28.125rem",
+  "medium": "45.0625rem",
+  "large": "65.0625rem",
+  "xlarge": "90.0625rem"
+);
+
+$breakpoint-down: (
+  // 720 1040 1440
+  "small": "45rem",
+  "medium": "65rem",
+  "large": "90rem"
+);
+
+$icon-check: url("../images/icon-check.svg");
+$icon-cross: url("../images/icon-cross.svg");
 
 $image-urls: (
-  "desktop": url("../images/bg-desktop-light.jpg"),
-  "mobile": url("../images/bg-mobile-light.jpg"),
+  light: (
+    "desktop": url("../images/bg-desktop-light.jpg"),
+    "mobile": url("../images/bg-mobile-light.jpg"),
+  ),
+  dark: (
+    "desktop": url("../images/bg-desktop-dark.jpg"),
+    "mobile": url("../images/bg-mobile-dark.jpg"),
+  ),
 );
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+@mixin image($theme, $device) {
+  $url: map-deep-get($image-urls, $theme, $device);
+  background-image: #{$url};
+  background-position: center center;
+  background-size: cover;
+}
 
 @mixin bg-image($device) {
   $url: map-get($image-urls, $device);
   background-image: #{$url};
   background-position: center center;
   background-size: cover;
+}
+
+@mixin breakpoint-up($size) {
+  @if map-get($breakpoint-up, $size) {
+    @media (min-width: map-get($breakpoint-up, $size)) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $size) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @if map-get($breakpoint-down, $size) {
+    @media (max-width: map-get( $breakpoint-down, $size)) {
+      @content;
+    }
+  } @else {
+    @media (max-width: $size) {
+      @content;
+    }
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin font($weight, $size) {
+  font: {
+    family: "Josefin Sans", sans-serif;
+    style: normal;
+    weight: $weight;
+    size: $size;
+  }
 }

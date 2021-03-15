@@ -6,17 +6,19 @@ export default function authenticationMessage({
   componentName,
   submitHandler,
   path,
-  message,
   redirectLinkName,
 }) {
   return (
-    <div className="auth">
-      <h1>{componentName}</h1>
-      <AuthenticationForm submit={submitHandler} />
-      <p>
-        {message}
-        <Link to={path}>{redirectLinkName}</Link>
-      </p>
+    <div className="authentication">
+      <h1 className="authentication__type">{componentName}</h1>
+      <AuthenticationForm
+        submit={submitHandler}
+        componentName={componentName}
+      />
+      <div className="authentication__line"></div>
+      <Link className="authentication__redirect-link" to={path}>
+        {redirectLinkName}
+      </Link>
     </div>
   );
 }

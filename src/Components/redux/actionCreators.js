@@ -26,6 +26,7 @@ export function deleteTask({ id, currentUser }) {
     );
   };
 }
+
 export function toggleTask({ id, currentUser, isChecked }) {
   return (dispatch) => {
     toggleTaskFirebase({ currentUser, id, isChecked }).then(() =>
